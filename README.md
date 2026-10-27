@@ -18,7 +18,7 @@ The current React router defines these views:
 - `/history` — History
 - `/admin` — Admin
 
-The application also includes a shared sidebar component.
+The application also includes a shared sidebar component. Google sign-in uses Firebase Authentication in the current login component. The History and Admin pages currently contain placeholder data-loading logic and are not fully connected to backend history/admin endpoints.
 
 ## Tech Stack
 
@@ -100,7 +100,7 @@ src/
 The application includes Firebase and Axios utilities. Before running it in a new environment:
 
 - Check the configuration files for required Firebase settings.
-- Check the API utility for the backend base URL and required endpoints.
+- Check the API utility for the backend base URL and required endpoints. The current utility points to a local development backend (port 3001) unless configured for the listed Replit-style host pattern; this must be adapted for your deployment.
 - Keep private keys, credentials, and secret values out of the repository.
 - Use environment variables for deployment-specific configuration where appropriate.
 
@@ -116,6 +116,7 @@ The exact backend requirements should be confirmed from the connected service an
 
 ## Potential Improvements
 
+- Configure the backend base URL using environment variables rather than relying on a hard-coded local address.
 - Document the expected backend endpoints and request/response formats.
 - Add screenshots of the actual application.
 - Add form validation and accessible feedback for errors.
