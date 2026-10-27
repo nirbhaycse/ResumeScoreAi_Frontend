@@ -1,18 +1,18 @@
 import axios from "axios";
 
-// Get the current domain and construct the backend URL
-const currentDomain = window.location.hostname.includes('replit.dev') 
-  ? window.location.hostname 
-  : 'localhost';
+const hostname = window.location.hostname;
+const replitBackend =
+  hostname.includes("replit.dev")
+    ? `https://${hostname.replace("-00-", "-01-")}`
+    : "http://localhost:3001";
 
-const backendPort = process.env.NODE_ENV === 'development' ? '3001' : '3001';
-const backendURL = window.location.hostname.includes('replit.dev')
-  ? `https://${currentDomain.replace('-00-', '-01-')}` // Backend typically runs on port 3001, frontend on 5000
-  : `http://localhost:${backendPort}`;
+// Set VITE_API_BASE_URL in your environment to override the default backend host.
+// Provide only the origin, e.g. https://api.example.com (the /api suffix is added below).
+const backendURL = (import.meta.env.VITE_API_BASE_URL || replitBackend).replace(/\/$/, "");
 
 const instance = axios.create({
-    baseURL: backendURL + "/api",
-    withCredentials: true
-})
+  baseURL: `${backendURL}/api`,
+  withCredentials: true,
+});
 
 export default instance;
