@@ -51,7 +51,17 @@ cd ResumeScoreAi_Frontend
 npm install
 ```
 
-### 3. Start the development server
+### 3. Configure the backend URL
+
+Copy `.env.example` to `.env` and set the API server origin:
+
+```env
+VITE_API_BASE_URL=http://localhost:3001
+```
+
+The frontend appends `/api` to this origin. Do not add private credentials to frontend environment variables; Vite variables are included in the client bundle.
+
+### 4. Start the development server
 
 ```bash
 npm run dev
